@@ -15,21 +15,6 @@ conda create --name omic
 module activate omic
 pip  install -r requirements.txt
 
-wget -O /dcs04/nilanjan/data/ukb_protein_arking/Y_risk/Breast_riskfactor.csv 
-wget -O /dcs04/nilanjan/data/ukb_protein_arking/Y_risk/lung_riskfactor.csv 
-wget -O /dcs04/nilanjan/data/ukb_protein_arking/Y_risk/colon_riskfactor.csv 
-wget -O /dcs04/nilanjan/data/ukb_protein_arking/Y_risk/Prostate_riskfactor.csv 
-wget -O /dcs04/nilanjan/data/ukb_protein_arking/Y_risk/death_riskfactor.csv
-wget -O /dcs04/nilanjan/data/ukb_protein_arking/Y_risk/incCOPD_riskfactor.csv 
-wget -O /dcs04/nilanjan/data/ukb_protein_arking/Y_risk/incSTR_riskfactor.csv 
-wget -O /dcs04/nilanjan/data/ukb_protein_arking/Y_risk/incCVD_riskfactor.csv 
-wget -O /dcs04/nilanjan/data/ukb_protein_arking/Y_risk/incESRD_riskfactor.csv
-wget -O /dcs04/nilanjan/data/ukb_protein_arking/Y_risk/incAlzh_riskfactor.csv 
-wget -O /dcs04/nilanjan/data/ukb_protein_arking/Y_risk/incMI_riskfactor.csv 
-wget -O /dcs04/nilanjan/data/ukb_protein_arking/Y_risk/incAsthma_riskfactor.csv 
-wget -O /dcs04/nilanjan/data/ukb_protein_arking/Y_risk/incParkinson_riskfactor.csv
-weget -0 dcs04/nilanjan/data/ukb_protein_arking/all_proteomic_imputed.csv
-
 # create a dictionary to store the file paths
 file_paths = {
     'Breast_riskfactor': '/dcs04/nilanjan/data/ukb_protein_arking/Y_risk/Breast_riskfactor.csv',
@@ -50,18 +35,18 @@ file_paths = {
 
 
 
-[ab_dataset.py]
-def add_to_dataset():
-  --output_path output/vae_regression_model.csv
+
 
 for key, value in file_paths.items():
     df_pheno=pd.read_csv(value,low_memory=False)
     df_protein=pd.read_csv(file_paths['all_proteomic_imputed'],low_memory=False)
     new_dataset = pd.merge(df_pheno, df_protein, on='Unnamed: 0', how='inner')
     --output_path output/vae_regression_model.csv
- [ab_dataset.py] 
+    
  def add_to_dataset():
-     --output_path output/vae_regression_model.csv
+     --output_path output/vae_regression_model.csv --roc_auc {roc_auc} --disease {disease} --
+
+
 
 echo "Accuracy of train file:"
 python util/visualizer.py --file_path output/vae_regression_model.csv --mode train --metric accuracy
